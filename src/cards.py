@@ -9,6 +9,13 @@ class CardMasteryLevel(Enum):
     EXPERT = 4
     MASTERED = 5
 
+class CardStatus(Enum):
+    NEW = 1
+    LEARNING = 2
+    SHORT_TERM = 3
+    LONG_TERM = 4
+    RELEARNING = 5
+
 class CardInformation:
     def __init__(self) -> None:
         self.front: str = None
@@ -23,7 +30,7 @@ class Card:
         self.latest_review: date = None
         
         self.mastery: CardMasteryLevel = CardMasteryLevel.NEW
-        self.status: str = 'new'
+        self.status: CardStatus = CardStatus.NEW
         self.difficulty: int = 100
         self.interval_factor: int = 100
 
