@@ -17,15 +17,16 @@ class CardStatus(Enum):
     RELEARNING = 5
 
 class CardInformation:
-    def __init__(self) -> None:
-        self.front: str = None
-        self.back: str = None
+    def __init__(self, front: str = None, back: str = None) -> None:
+        self.front: str = front
+        self.back: str = back
 
 class Card:
     def __init__(self) -> None:
         self.card_info: CardInformation = None
 
         self.card_id: int = None
+        self.deck_id: int = None
 
         self.card_added: date = None
         self.first_review: date = None
@@ -42,7 +43,10 @@ class Card:
         self.average_review_time: time = None
         self.total_review_time: time = None
     
-    def create_new_card(self) -> None:
+    def create_new_card(self, front_text: str, back_text: str, deck_id: int) -> None:
+        self.card_info = CardInformation(front_text, back_text)
+        self.deck_id = deck_id
+
         self.card_added = date.today()
         self.mastery = CardMasteryLevel.NEW
         self.status = CardStatus.NEW
