@@ -1,5 +1,9 @@
+import cards
+
 def main():
-    print("Welcome to Cascade")
+    c = cards.Card()
+    c.create_new_card()
+    print(c.card_id)
 
 if __name__ == '__main__':
     main()
