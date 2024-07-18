@@ -23,22 +23,36 @@ class CardInformation:
 
 class Card:
     def __init__(self) -> None:
-        self.card_info: CardInformation = CardInformation()
+        self.card_info: CardInformation = None
+
+        self.card_id: int = None
 
         self.card_added: date = None
         self.first_review: date = None
         self.latest_review: date = None
         
-        self.mastery: CardMasteryLevel = CardMasteryLevel.NEW
-        self.status: CardStatus = CardStatus.NEW
-        self.difficulty: int = 100
-        self.interval_factor: int = 100
+        self.mastery: CardMasteryLevel = None
+        self.status: CardStatus = None
+        self.difficulty: int = None
+        self.interval_factor: int = None
 
         self.next_review: datetime = None
 
         self.num_reviews: int = 0
         self.average_review_time: time = None
         self.total_review_time: time = None
+    
+    def create_new_card(self) -> None:
+        self.card_added = date.today()
+        self.mastery = CardMasteryLevel.NEW
+        self.status = CardStatus.NEW
+        self.difficulty = 100
+        self.interval_factor = 100
+
+        self.card_id = hash(self.card_added)
+
+    def _save_card(self) -> None:
+        raise NotImplementedError
 
 
 
